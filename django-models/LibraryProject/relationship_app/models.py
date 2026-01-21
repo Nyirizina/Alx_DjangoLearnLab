@@ -20,3 +20,9 @@ class Librarian(models.Model):
     library = models.OneToOneField(Library, on_delete=models.CASCADE, related_name='librarian')
     def __str__(self):
         return self.name
+
+class UserProfile(models.Model):
+    user = models.OneToOneField('auth.user', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.username

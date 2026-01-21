@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.views.generic.detail import DetailView
-from .models import Book 
+from .models import Book, UserProfile 
 from .models import Library
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
+from django.contrib.auth.models import User
 
 def list_books(request):
     books = Book.objects.all()
@@ -29,4 +30,5 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'relationship_app/register.html', {'form': form})
 
-    
+admin = UserProfile.objects.create(user=User.objects.get(username='admin'))
+member = UserProfile.objects.create(user=User.objects.get(username='member'))
