@@ -50,8 +50,8 @@ class UserProfile(models.Model):
         ('Librarian', 'Librarian'),
         ('Member', 'Member'),
     )
-    
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    User = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     role = models.CharField(max_length=20, choices=ROLE_CHOICES, default='Member')
 
     def __str__(self):
