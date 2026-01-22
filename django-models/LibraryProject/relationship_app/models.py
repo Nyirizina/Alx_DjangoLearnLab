@@ -17,6 +17,16 @@ class Book(models.Model):
 
     def __str__(self):
         return self.title
+    class Meta:
+        # Custom permissions defined here
+        permissions = [
+            ("can_add_book", "Can add book"),
+            ("can_change_book", "Can change book"),
+            ("can_delete_book", "Can delete book"),
+        ]
+
+    def __str__(self):
+        return self.title
 
 class Library(models.Model):
     name = models.CharField(max_length=100)
@@ -56,3 +66,13 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
     instance.profile.save()
+
+from django.db import models
+
+class Author(models.Model):
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
+
+
+    
