@@ -32,12 +32,16 @@ def register(request):
     return render(request, 'relationship_app/register.html', {'form': form})
 
 def is_admin(user):
+    
     if user.is_authenticated and hasattr(user, 'profile'):
         return user.profile.role == 'Admin'
     return False
-@user_passes_test(is_admin)
-def admin_dashboard(request):
-    return render(request, 'relationship_app/admin_view.html')
+
+# 2. Apply the decorator to the admin_view
+@user_passes_test(is_admin, login_url='/login/')
+def admin_view(request):
+    
+    return render(request, 'admin_view.html')
 
 def is_librarian(user):
     return user.is_authenticated and UserProfile.role == 'Librarian'
