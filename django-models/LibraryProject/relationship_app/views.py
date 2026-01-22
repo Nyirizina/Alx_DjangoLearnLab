@@ -31,28 +31,31 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'relationship_app/register.html', {'form': form})
 
-def is_admin(user):
-    
-    if user.is_authenticated and hasattr(user, 'profile'):
-        return user.profile.role == 'Admin'
-    return False
+# views.py
+from django.shortcuts import render
+from django.contrib.auth.decorators import user_passes_test
 
-# 2. Apply the decorator to the admin_view
-@user_passes_test(is_admin, login_url='/login/')
-def admin_view(request):
-    
-    return render(request, 'admin_view.html')
+# Helper functions for role checking
+def is_admin(user):
+    return user.is_authenticated and user.profile.role == 'Admin'
 
 def is_librarian(user):
-    return user.is_authenticated and UserProfile.role == 'Librarian'
-@user_passes_test(is_librarian)
-def librarian_dashboard(request):
-    return render(request, 'relationship_app/librarian_view.html')
+    return user.is_authenticated and user.profile.role == 'Librarian'
+
 def is_member(user):
-    return user.is_authenticated and UserProfile.role == 'Member'
+    return user.is_authenticated and user.profile.role == 'Member'
+
+# Admin View
+@user_passes_test(is_admin)
+def admin_view(request):
+    return render(request, 'admin_view.html')
+
+# Librarian View
+@user_passes_test(is_librarian)
+def librarian_view(request):
+    return render(request, 'librarian_view.html')
+
+# Member View
 @user_passes_test(is_member)
-def member_dashboard(request):
-    return render(request, 'relationship_app/member_view.html')
-
-
-
+def member_view(request):
+    return render(request, 'member_view.html')
