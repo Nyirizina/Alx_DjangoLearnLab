@@ -1,7 +1,7 @@
 from django import views
 from django.contrib import admin
 from django.urls import path
-from .views import register, list_books, LibraryDetailView 
+from .views import register, list_books, LibraryDetailView , admin_dashboard, librarian_dashboard, member_dashboard
 from django.contrib.auth.views import LoginView , LogoutView
 
 urlpatterns = [
