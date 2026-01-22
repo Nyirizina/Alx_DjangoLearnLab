@@ -7,6 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import user_passes_test
 
 def list_books(request):
     books = Book.objects.all()
@@ -30,5 +31,22 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'relationship_app/register.html', {'form': form})
 
-admin = UserProfile.objects.create(user=User.objects.get(username='admin'))
-member = UserProfile.objects.create(user=User.objects.get(username='member'))
+def is_admin(user):
+    return user.is_authenticated and UserProfile.role == 'Admin'
+@user_passes_test(is_admin)
+def admin_dashboard(request):
+    return render(request, 'relationship_app/admin_view.html')
+
+def is_librarian(user):
+    return user.is_authenticated and UserProfile.role == 'Librarian'
+@user_passes_test(is_librarian)
+def librarian_dashboard(request):
+    return render(request, 'relationship_app/librarian_view.html')
+def is_member(user):
+    return user.is_authenticated and UserProfile.role == 'Member'
+@user_passes_test(is_member)
+def member_dashboard(request):
+    return render(request, 'relationship_app/member_view.html')
+
+
+

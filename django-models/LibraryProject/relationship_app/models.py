@@ -23,8 +23,8 @@ class Librarian(models.Model):
 
 class UserProfile(models.Model):
     user = models.OneToOneField('auth.user', on_delete=models.CASCADE)
-    role = models.CharField(max_length=50)
-    role= [
+    role = models.CharField(max_length=50, default='member',choices = UserProfile.role_choices)
+    role_choices = [
         ('admin', 'Admin'),
         ('member', 'Member'),
         ('librarian', 'Librarian'),

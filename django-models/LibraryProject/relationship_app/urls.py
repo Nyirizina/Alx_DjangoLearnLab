@@ -11,4 +11,7 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'),
     path('register/', views.register(template_name='register.html'), name='register'),
+    path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
+    path('librarian_dashboard/', views.librarian_dashboard, name='librarian_dashboard'),
+    path('member_dashboard/', views.member_dashboard, name='member_dashboard'),
 ]
