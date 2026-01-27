@@ -3,6 +3,7 @@ from django.views.generic.detail import DetailView
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import user_passes_test
 from .models import Book, Library, UserProfile
+from django.contrib.auth import login
 
 # --- Function Based Views ---
 
