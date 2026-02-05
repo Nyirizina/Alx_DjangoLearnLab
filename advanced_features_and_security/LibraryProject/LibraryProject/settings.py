@@ -65,6 +65,10 @@ SECURE_BROWSER_XSS_FILTER = True
 # Ensure cookies are only sent over HTTPS connections
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
+
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 # Application definition
 
 INSTALLED_APPS = [
