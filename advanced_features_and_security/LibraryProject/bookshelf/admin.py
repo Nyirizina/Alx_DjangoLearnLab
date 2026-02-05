@@ -1,7 +1,7 @@
 from django.contrib import admin
-from .models import Book
+from .models import Book, CustomUser
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser
+# CustomUser is imported above
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
