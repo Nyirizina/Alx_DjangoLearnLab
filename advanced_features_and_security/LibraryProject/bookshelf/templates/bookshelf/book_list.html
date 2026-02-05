@@ -13,5 +13,10 @@
         <li>No books found.</li>
     {% endfor %}
 </ul>
+<form method="post" action="/submit/">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Submit</button>
+</form>
 </body>
 </html>
