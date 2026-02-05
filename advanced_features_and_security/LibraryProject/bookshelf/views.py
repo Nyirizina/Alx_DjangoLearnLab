@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import permission_required
 from .models import Book
+from .forms import ExampleForm
 
 # 1. Book List View (Satisfies 'book_list', 'books', and 'raise_exception')
 # This view requires the 'can_view' permission to access.
@@ -41,3 +42,16 @@ def book_delete(request, pk):
         book.delete()
         return redirect('book_list')
     return render(request, 'bookshelf/book_confirm_delete.html', {'book': book})
+# LibraryProject/bookshelf/views.py
+
+
+def example_view(request):
+    if request.method == 'POST':
+        form = ExampleForm(request.POST)
+        if form.is_valid():
+            # Process sanitized data
+            name = form.cleaned_data['name']
+            # ...
+    else:
+        form = ExampleForm()
+    return render(request, 'bookshelf/form_template.html', {'form': form})
