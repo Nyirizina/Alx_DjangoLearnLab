@@ -43,6 +43,28 @@ CSP_SCRIPT_SRC = ("'self'", 'static.yourdomain.com')
 SECURE_CONTENT_TYPE_NOSNIFF = True
 
 AUTH_USER_MODEL = 'bookshelf.CustomUser'
+
+# LibraryProject/settings.py
+
+# --- HTTPS and SSL Settings ---
+# Redirect all HTTP requests to HTTPS
+SECURE_SSL_REDIRECT = True
+
+# HTTP Strict Transport Security (HSTS)
+# Tells the browser to remember to only use HTTPS for the next year
+SECURE_HSTS_SECONDS = 31536000 
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+SECURE_HSTS_PRELOAD = True
+
+X_FRAME_OPTIONS = 'DENY'
+
+# Enable the browser's built-in XSS filter
+SECURE_BROWSER_XSS_FILTER = True
+
+# --- Secure Cookies ---
+# Ensure cookies are only sent over HTTPS connections
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 # Application definition
 
 INSTALLED_APPS = [
