@@ -40,6 +40,7 @@ SECURE_SSL_REDIRECT = True
 CSP_DEFAULT_SRC = ("'self'",)
 CSP_STYLE_SRC = ("'self'", 'fonts.googleapis.com')
 CSP_SCRIPT_SRC = ("'self'", 'static.yourdomain.com')
+SECURE_CONTENT_TYPE_NOSNIFF = True
 
 AUTH_USER_MODEL = 'bookshelf.CustomUser'
 # Application definition
