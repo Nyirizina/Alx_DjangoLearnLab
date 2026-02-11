@@ -34,6 +34,7 @@ REST_FRAMEWORK= {  'DEFAULT_AUTHENTICATION_CLASSES': [
 INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework.permissions',
+    'rest_framework.permissions.IsAuthenticated',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
