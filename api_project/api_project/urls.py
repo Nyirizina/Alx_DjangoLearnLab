@@ -19,9 +19,8 @@ from django.urls import path
 from django.urls import include
 from api_project.api.views import BookList, BookViewSet
 
-router = DefaultRouter()
-router.register(r'books', BookViewSet, basename='book')
-router.register(r'books-list', BookList, basename='book-list')
+
+
 
 
 urlpatterns = [
