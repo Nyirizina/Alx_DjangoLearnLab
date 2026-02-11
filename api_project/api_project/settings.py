@@ -26,12 +26,14 @@ SECRET_KEY = 'django-insecure-luu12+ldfeipn0tq*)ls!z**5xlh!($@5l(al4_xk%8$ce20j!
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+REST_FRAMEWORK= {  'DEFAULT_AUTHENTICATION_CLASSES': [
+    'rest_framework.authentication.TokenAuthentication',]}
 
 # Application definition
 
 INSTALLED_APPS = [
     'rest_framework.authtoken',
+    'rest_framework.permissions',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
