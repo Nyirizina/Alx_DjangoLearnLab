@@ -3,6 +3,8 @@ from rest_framework import generics
 from .models import Author, Book
 from .serializers import AuthorSerializer, BookSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
+from django_filters import rest_framework
+
 # API view for listing and creating authors
 # Create your views here.
 
