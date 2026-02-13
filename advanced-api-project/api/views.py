@@ -6,6 +6,7 @@ from .serializers import AuthorSerializer, BookSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from django_filters import rest_framework
 
+
 # API view for listing and creating authors
 # Create your views here.
 
@@ -15,6 +16,10 @@ class BookListView(generics.ListAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     filterset_fields = ['title', 'publication_year', 'author']
+    search_fields = ['title', 'author__name']
+    ordering_fields = ['publication_year', 'title']
+    ordering = ['title']  # Default ordering by publication year
+
 
 
     def get_queryset_title(self):
