@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class post(models.Model):
+class Post(models.Model):
     author = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE, related_name='posts')
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
@@ -10,7 +10,7 @@ class post(models.Model):
     def __str__(self):
         return f'Post by {self.author.username} at {self.created_at}'
     
-class comment(models.Model):
+class Comment(models.Model):
     post = models.ForeignKey(post, on_delete=models.CASCADE, related_name='comments')
     author = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE, related_name='comments')
     content = models.TextField()
