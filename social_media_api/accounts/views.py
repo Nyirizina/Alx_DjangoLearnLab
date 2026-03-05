@@ -44,7 +44,7 @@ class FeedView(generics.GenericAPIView):
         return Post.objects.filter(author__in=user.following.all()).order_by('-created_at')
 
 class UserRegistrationView(generics.GenericAPIView):
-    queryset = User.objects.all()
+    queryset = CustomUser.objects.all()
     serializer_class = UserRegistrationSerializer
     permission_classes = [AllowAny] 
 
