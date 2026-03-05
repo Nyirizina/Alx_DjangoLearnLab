@@ -4,7 +4,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from .models import Author, Book
 from .serializers import AuthorSerializer, BookSerializer
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
-from django_filters import rest_framework
+from django_filters.rest_framework import DjangoFilterBackend
 
 
 # API view for listing and creating authors

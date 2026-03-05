@@ -6,6 +6,9 @@ router = DefaultRouter()
 router.register(r'posts', PostViewSet)
 router.register(r'comments', CommentViewSet)
 
+from django.urls import path
+from .views import FeedView
+
 urlpatterns = [
-    path('', include(router.urls)),
+    path('feed/', FeedView.as_view(), name='user-feed'),
 ]

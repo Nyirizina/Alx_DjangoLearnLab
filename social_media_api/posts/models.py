@@ -11,7 +11,7 @@ class Post(models.Model):
         return f'Post by {self.author.username} at {self.created_at}'
     
 class Comment(models.Model):
-    post = models.ForeignKey(post, on_delete=models.CASCADE, related_name='comments')
+    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
     author = models.ForeignKey('accounts.CustomUser', on_delete=models.CASCADE, related_name='comments')
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
