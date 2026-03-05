@@ -34,16 +34,16 @@ from rest_framework import generics, permissions
 from .models import Post
 from .serializers import PostSerializer
 
-class FeedView(generics.ListAPIView):
+class FeedView(generics.GenericAPIView):
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         user = self.request.user
         # Filter posts by users the current user follows, ordered by newest first
-        return Post.objects.filter(author__in=user.following.all()).order_status('-created_at')
+        return Post.objects.filter(author__in=user.following.all()).order_by('-created_at')
 
-class UserRegistrationView(generics.CreateAPIView):
+class UserRegistrationView(generics.GenericAPIView):
     queryset = User.objects.all()
     serializer_class = UserRegistrationSerializer
     permission_classes = [AllowAny] 
